@@ -5,12 +5,13 @@ import { CalendarDays, MapPin, LayoutGrid, List } from "lucide-react";
 import clsx from "clsx";
 import RsvpModal from "./RsvpModal";
 import EmptyState from "./EmptyState";
+import MonthCalendar from "./MonthCalendar";
 import { events } from "@/data/events";
 import { formatEventDateTime } from "@/lib/utils";
 import { AUDIENCE_LABELS, type Audience, type CommunityEvent } from "@/lib/types";
 
 export default function EventBrowser() {
-  const [view, setView] = useState<"grid" | "list">("grid");
+  const [view, setView] = useState<"grid" | "list" | "calendar">("grid");
   const [audience, setAudience] = useState<Audience | "all">("all");
   const [selected, setSelected] = useState<CommunityEvent | null>(null);
 
@@ -74,6 +75,20 @@ export default function EventBrowser() {
             <List className="h-4 w-4" aria-hidden="true" />
             List
           </button>
+          <button
+            type="button"
+            onClick={() => setView("calendar")}
+            aria-pressed={view === "calendar"}
+            className={clsx(
+              "inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium",
+              view === "calendar"
+                ? "bg-sawnee-50 text-sawnee-700"
+                : "text-earth-muted"
+            )}
+          >
+            <CalendarDays className="h-4 w-4" aria-hidden="true" />
+            Calendar
+          </button>
         </div>
       </div>
 
@@ -81,7 +96,9 @@ export default function EventBrowser() {
         {filtered.length} {filtered.length === 1 ? "event" : "events"} found
       </p>
 
-      {filtered.length === 0 ? (
+      {view === "calendar" ? (
+        <MonthCalendar events={filtered} onSelect={setSelected} />
+      ) : filtered.length === 0 ? (
         <EmptyState
           title="No events for that audience yet"
           message="Check back soon, or switch the filter to “Everyone” to see all upcoming community events."

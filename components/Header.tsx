@@ -9,6 +9,7 @@ import clsx from "clsx";
 const NAV_LINKS = [
   { href: "/resources", label: "Resource Directory" },
   { href: "/events", label: "Events" },
+  { href: "/planner", label: "My Planner" },
   { href: "/explore", label: "Explore Map" },
   { href: "/about", label: "About" },
 ];

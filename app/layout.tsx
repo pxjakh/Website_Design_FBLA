@@ -3,6 +3,7 @@ import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ForsythAIChat from "@/components/ai/ForsythAIChat";
 
 const fraunces = Fraunces({
   variable: "--font-fraunces",
@@ -47,6 +48,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <ForsythAIChat />
       </body>
     </html>
   );

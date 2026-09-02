@@ -1,11 +1,36 @@
 "use client";
 
 import { useState } from "react";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, ShieldCheck, AlertTriangle, XCircle } from "lucide-react";
 import { CATEGORY_LABELS, type ResourceCategory } from "@/lib/types";
+import {
+  moderateSubmission,
+  type ModerationResult,
+} from "@/lib/ai/moderation";
 
 export default function SubmitPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [review, setReview] = useState<ModerationResult | null>(null);
+  const [draft, setDraft] = useState({
+    name: "",
+    category: "parks-recreation",
+    address: "",
+    description: "",
+    contactEmail: "",
+  });
+
+  function set<K extends keyof typeof draft>(key: K, value: string) {
+    setDraft((d) => ({ ...d, [key]: value }));
+    // Clear a stale verdict as soon as the submitter starts fixing things.
+    if (review) setReview(null);
+  }
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    const result = moderateSubmission(draft);
+    setReview(result);
+    if (result.status !== "blocked") setSubmitted(true);
+  }
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-12 sm:px-6">
@@ -36,19 +61,55 @@ export default function SubmitPage() {
           </div>
         </div>
       ) : (
-        <form
-          className="mt-8 space-y-5"
-          onSubmit={(e) => {
-            e.preventDefault();
-            setSubmitted(true);
-          }}
-        >
+        <form className="mt-8 space-y-5" onSubmit={handleSubmit}>
+          {review && review.status === "blocked" && (
+            <div
+              role="alert"
+              className="rounded-xl border border-error-600 bg-error-50 p-5"
+            >
+              <h2 className="flex items-center gap-2 font-semibold text-error-600">
+                <XCircle className="h-5 w-5 shrink-0" aria-hidden="true" />
+                Automated review found problems
+              </h2>
+              <p className="mt-1 text-sm text-earth-text">
+                Fix these before submitting. This check runs in your browser —
+                nothing was sent anywhere.
+              </p>
+              <ul className="mt-3 space-y-2">
+                {review.findings.map((f, i) => (
+                  <li key={i} className="flex items-start gap-2 text-sm">
+                    {f.level === "error" ? (
+                      <XCircle
+                        className="mt-0.5 h-4 w-4 shrink-0 text-error-600"
+                        aria-hidden="true"
+                      />
+                    ) : (
+                      <AlertTriangle
+                        className="mt-0.5 h-4 w-4 shrink-0 text-warning-600"
+                        aria-hidden="true"
+                      />
+                    )}
+                    <span className="text-earth-text">{f.message}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          <p className="flex items-start gap-2 rounded-lg bg-earth-surface p-3 text-xs text-earth-muted">
+            <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
+            Submissions are screened automatically for spam, inappropriate
+            language, and missing details before a human reviewer sees them.
+          </p>
+
           <Field id="org-name" label="Organization or program name" required>
             <input
               id="org-name"
               name="org-name"
               type="text"
               required
+              value={draft.name}
+              onChange={(e) => set("name", e.target.value)}
               className="w-full rounded-lg border border-earth-border bg-earth-surface px-3 py-2.5"
             />
           </Field>
@@ -58,6 +119,8 @@ export default function SubmitPage() {
               id="org-category"
               name="org-category"
               required
+              value={draft.category}
+              onChange={(e) => set("category", e.target.value)}
               className="w-full rounded-lg border border-earth-border bg-earth-surface px-3 py-2.5"
             >
               {(Object.keys(CATEGORY_LABELS) as ResourceCategory[]).map((c) => (
@@ -74,6 +137,9 @@ export default function SubmitPage() {
               name="org-address"
               type="text"
               required
+              value={draft.address}
+              onChange={(e) => set("address", e.target.value)}
+              placeholder="123 Main St, Cumming, GA 30040"
               className="w-full rounded-lg border border-earth-border bg-earth-surface px-3 py-2.5"
             />
           </Field>
@@ -89,6 +155,8 @@ export default function SubmitPage() {
               name="org-description"
               rows={4}
               required
+              value={draft.description}
+              onChange={(e) => set("description", e.target.value)}
               aria-describedby="org-description-hint"
               className="w-full rounded-lg border border-earth-border bg-earth-surface px-3 py-2.5"
             />
@@ -99,6 +167,8 @@ export default function SubmitPage() {
               id="contact-email"
               name="contact-email"
               type="email"
+              value={draft.contactEmail}
+              onChange={(e) => set("contactEmail", e.target.value)}
               aria-describedby="contact-email-hint"
               className="w-full rounded-lg border border-earth-border bg-earth-surface px-3 py-2.5"
             />

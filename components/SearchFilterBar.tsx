@@ -9,6 +9,7 @@ import {
   type Audience,
   type ResourceCategory,
 } from "@/lib/types";
+import VoiceSearchButton from "./ai/VoiceSearchButton";
 
 export interface Filters {
   query: string;
@@ -64,11 +65,15 @@ export default function SearchFilterBar({
 
   return (
     <div ref={containerRef} className="space-y-3">
-      <form role="search" onSubmit={(e) => e.preventDefault()}>
+      <form
+        role="search"
+        onSubmit={(e) => e.preventDefault()}
+        className="flex items-start gap-2"
+      >
         <label htmlFor="resource-search" className="sr-only">
           Search resources by name, description, or tag
         </label>
-        <div className="relative">
+        <div className="relative flex-1">
           <Search
             className="pointer-events-none absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-earth-muted"
             aria-hidden="true"
@@ -82,6 +87,9 @@ export default function SearchFilterBar({
             className="w-full rounded-lg border border-earth-border bg-earth-surface py-3 pl-11 pr-4 text-base placeholder:text-earth-muted"
           />
         </div>
+        <VoiceSearchButton
+          onResult={(transcript) => onChange({ ...filters, query: transcript })}
+        />
       </form>
 
       <div className="flex flex-wrap items-center gap-2">

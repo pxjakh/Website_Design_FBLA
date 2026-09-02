@@ -92,7 +92,9 @@ export default function SearchFilterBar({
         />
       </form>
 
-      <div className="flex flex-wrap items-center gap-2">
+      {/* `relative` here is what the filter panels resolve against on
+          phones, where they span this row instead of hanging off a chip. */}
+      <div className="relative flex flex-wrap items-center gap-2">
         <FilterDropdown
           id="category"
           label="Category"
@@ -197,7 +199,9 @@ function FilterDropdown({
   children: React.ReactNode;
 }) {
   return (
-    <div className="relative">
+    // Not positioned on phones, so the panel below anchors to the filter
+    // row and cannot run off the right edge of a narrow screen.
+    <div className="sm:relative">
       <button
         type="button"
         onClick={onToggle}
@@ -225,7 +229,7 @@ function FilterDropdown({
       {isOpen && (
         <div
           id={`${id}-filter-panel`}
-          className="absolute left-0 top-full z-30 mt-2 min-w-56 rounded-lg border border-earth-border bg-earth-surface p-2 shadow-lg"
+          className="absolute inset-x-0 top-full z-30 mt-2 rounded-lg border border-earth-border bg-earth-surface p-2 shadow-lg sm:inset-x-auto sm:left-0 sm:min-w-56"
         >
           <fieldset>
             <legend className="sr-only">Filter by {label}</legend>

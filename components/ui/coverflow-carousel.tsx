@@ -48,8 +48,12 @@ export function CoverflowCarousel({
   perspective = 3,
   falloff = 0.56,
   fade = 0.1,
-  cardWidth = "clamp(240px, 30vw, 320px)",
-  cardHeight = "clamp(280px, 34vw, 340px)",
+  // Sized off the viewport so a phone gets a card that fills most of the
+  // screen. The height has to clear the tallest card's content — a 45-char
+  // title over a 3-line description, three meta rows, and the action —
+  // because the card clips its overflow.
+  cardWidth = "clamp(250px, 74vw, 320px)",
+  cardHeight = "clamp(344px, 92vw, 384px)",
   gap = 0.08,
   loop = true,
   showPagination = true,
@@ -306,12 +310,12 @@ export function CoverflowCarousel({
                     {slide.tag}
                   </span>
 
-                  <h3 className="mt-3 text-lg font-semibold leading-snug text-sawnee-700">
+                  <h3 className="mt-3 line-clamp-2 text-base font-semibold leading-snug text-sawnee-700 sm:text-lg">
                     {slide.title}
                   </h3>
 
                   {slide.subtitle && (
-                    <p className="mt-1.5 text-sm leading-relaxed text-earth-muted">
+                    <p className="mt-1.5 line-clamp-3 text-sm leading-relaxed text-earth-muted">
                       {slide.subtitle}
                     </p>
                   )}
@@ -348,7 +352,7 @@ export function CoverflowCarousel({
               type="button"
               aria-label="Previous slide"
               onClick={() => nudge(-1)}
-              className="absolute left-3 top-1/2 z-[200] -translate-y-1/2 rounded-full border border-earth-border bg-earth-surface/80 p-3 text-sawnee-700 backdrop-blur transition-colors hover:bg-earth-surface"
+              className="absolute left-3 top-1/2 z-[200] hidden -translate-y-1/2 rounded-full border border-earth-border bg-earth-surface/80 p-3 text-sawnee-700 backdrop-blur transition-colors hover:bg-earth-surface sm:block"
             >
               <ChevronLeft className="h-5 w-5" aria-hidden="true" />
             </button>
@@ -356,7 +360,7 @@ export function CoverflowCarousel({
               type="button"
               aria-label="Next slide"
               onClick={() => nudge(1)}
-              className="absolute right-3 top-1/2 z-[200] -translate-y-1/2 rounded-full border border-earth-border bg-earth-surface/80 p-3 text-sawnee-700 backdrop-blur transition-colors hover:bg-earth-surface"
+              className="absolute right-3 top-1/2 z-[200] hidden -translate-y-1/2 rounded-full border border-earth-border bg-earth-surface/80 p-3 text-sawnee-700 backdrop-blur transition-colors hover:bg-earth-surface sm:block"
             >
               <ChevronRight className="h-5 w-5" aria-hidden="true" />
             </button>

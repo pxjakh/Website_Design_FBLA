@@ -85,7 +85,9 @@ export default function ForsythAIChat() {
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
         aria-controls="forsyth-ai-panel"
-        className="fixed bottom-5 right-5 z-50 flex items-center gap-2 rounded-full bg-sawnee-700 px-5 py-4 text-white shadow-lg transition-colors hover:bg-sawnee-900"
+        // Clears the home indicator on notched phones.
+        style={{ bottom: "max(1.25rem, env(safe-area-inset-bottom))" }}
+        className="fixed right-4 z-50 flex items-center gap-2 rounded-full bg-sawnee-700 px-5 py-4 text-white shadow-lg transition-colors hover:bg-sawnee-900 sm:right-5"
       >
         {open ? (
           <X className="h-5 w-5" aria-hidden="true" />
@@ -103,7 +105,8 @@ export default function ForsythAIChat() {
           id="forsyth-ai-panel"
           role="dialog"
           aria-label="Forsyth AI Navigator"
-          className="fixed bottom-24 right-5 z-50 flex max-h-[min(600px,75vh)] w-[min(400px,calc(100vw-2.5rem))] flex-col overflow-hidden rounded-xl border border-earth-border bg-earth-surface shadow-2xl"
+          style={{ bottom: "calc(max(1.25rem, env(safe-area-inset-bottom)) + 4.5rem)" }}
+          className="fixed right-4 z-50 flex max-h-[min(600px,70vh)] w-[min(400px,calc(100vw-2rem))] flex-col overflow-hidden rounded-xl border border-earth-border bg-earth-surface shadow-2xl sm:right-5"
         >
           <div className="flex items-center gap-2 border-b border-earth-border bg-sawnee-700 px-4 py-3 text-white">
             <Sparkles className="h-5 w-5 text-gold-400" aria-hidden="true" />

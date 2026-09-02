@@ -8,6 +8,8 @@ import {
   CalendarDays,
 } from "lucide-react";
 import DotBorderCard from "@/components/ui/DotBorderCard";
+import { DotBorderLink } from "@/components/ui/DotBorderButton";
+import FeaturedCarousel from "@/components/FeaturedCarousel";
 import { events } from "@/data/events";
 import { resources } from "@/data/resources";
 import { formatEventDateTime } from "@/lib/utils";
@@ -64,20 +66,26 @@ export default function Home() {
             services, volunteer opportunities, and small business support —
             organized so you can get to what you need in a few clicks.
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link
+          <div className="mt-6 flex flex-wrap items-center gap-1">
+            <DotBorderLink
               href="/resources"
-              className="inline-flex items-center gap-2 rounded-lg bg-gold-500 px-5 py-3 font-semibold text-sawnee-900 transition-colors hover:bg-gold-400"
+              className="bg-gold-500 text-sawnee-900 hover:bg-gold-400"
             >
               Browse the directory
               <ArrowRight className="h-5 w-5" aria-hidden="true" />
-            </Link>
-            <Link
+            </DotBorderLink>
+            <DotBorderLink
+              href="/planner"
+              className="border border-sawnee-300 text-white hover:bg-sawnee-900"
+            >
+              Build my plan
+            </DotBorderLink>
+            <DotBorderLink
               href="/events"
-              className="inline-flex items-center gap-2 rounded-lg border border-sawnee-300 px-5 py-3 font-semibold text-white transition-colors hover:bg-sawnee-900"
+              className="border border-sawnee-300 text-white hover:bg-sawnee-900"
             >
               See upcoming events
-            </Link>
+            </DotBorderLink>
           </div>
           <p className="mt-8 text-sm text-sawnee-100">
             {resources.length} verified resources · {events.length} upcoming
@@ -125,6 +133,27 @@ export default function Home() {
             </li>
           ))}
         </ul>
+      </section>
+
+      <section
+        aria-labelledby="featured-heading"
+        className="overflow-hidden border-y border-earth-border bg-sawnee-900 py-14"
+      >
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
+          <h2
+            id="featured-heading"
+            className="text-2xl font-semibold text-white sm:text-3xl"
+          >
+            Get involved this month
+          </h2>
+          <p className="mt-2 max-w-2xl text-sawnee-100">
+            Volunteer shifts, classes, and places that need a hand. Drag, swipe,
+            or use the arrow keys.
+          </p>
+        </div>
+        <div className="mt-4">
+          <FeaturedCarousel />
+        </div>
       </section>
 
       <section

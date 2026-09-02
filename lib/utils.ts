@@ -1,4 +1,11 @@
+import clsx, { type ClassValue } from "clsx";
 import type { OperatingHoursBlock, ResourceItem } from "./types";
+
+/** Class-name joiner. Matches the shadcn `cn` signature so components
+ *  written against that convention drop in without edits. */
+export function cn(...inputs: ClassValue[]): string {
+  return clsx(inputs);
+}
 
 const DAY_ORDER: OperatingHoursBlock["day"][] = [
   "Sun",

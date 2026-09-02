@@ -55,18 +55,43 @@ export default function Home() {
 
   return (
     <>
-      <section className="bg-sawnee-700 text-white">
-        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
+      <section
+        aria-labelledby="hero-heading"
+        className="relative overflow-hidden bg-sawnee-900 text-white"
+      >
+        {/* Diagonal hatch, matching the card hover treatment */}
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 opacity-[0.07]"
+          style={{
+            backgroundImage:
+              "repeating-linear-gradient(45deg, #ffffff 0 1px, transparent 2px 6px)",
+          }}
+        />
+
+        <div className="relative mx-auto max-w-6xl px-4 pt-14 text-center sm:px-6 md:pt-20">
           <p className="font-medium text-gold-400">Forsyth County, Georgia</p>
-          <h1 className="mt-3 max-w-3xl text-4xl font-semibold leading-tight sm:text-5xl">
+          <h1
+            id="hero-heading"
+            className="mx-auto mt-3 max-w-3xl text-4xl font-semibold leading-tight sm:text-5xl"
+          >
             Every community resource in Forsyth County, in one place.
           </h1>
-          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-sawnee-50">
-            Find parks and trails, library programs, food assistance, senior
-            services, volunteer opportunities, and small business support —
-            organized so you can get to what you need in a few clicks.
+          <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-sawnee-50">
+            Parks and trails, library programs, food assistance, senior
+            services, volunteer shifts, and small business support — organized
+            so you can get to what you need in a few clicks.
           </p>
-          <div className="mt-6 flex flex-wrap items-center gap-1">
+        </div>
+
+        {/* The carousel is the hero image: real events and volunteer
+            opportunities rather than decorative stock photography. */}
+        <div className="relative mt-2">
+          <FeaturedCarousel />
+        </div>
+
+        <div className="relative mx-auto max-w-6xl px-4 pb-16 text-center sm:px-6">
+          <div className="flex flex-wrap items-center justify-center gap-1">
             <DotBorderLink
               href="/resources"
               className="bg-gold-500 text-sawnee-900 hover:bg-gold-400"
@@ -76,18 +101,18 @@ export default function Home() {
             </DotBorderLink>
             <DotBorderLink
               href="/planner"
-              className="border border-sawnee-300 text-white hover:bg-sawnee-900"
+              className="border border-sawnee-300 text-white hover:bg-sawnee-700"
             >
               Build my plan
             </DotBorderLink>
             <DotBorderLink
               href="/events"
-              className="border border-sawnee-300 text-white hover:bg-sawnee-900"
+              className="border border-sawnee-300 text-white hover:bg-sawnee-700"
             >
               See upcoming events
             </DotBorderLink>
           </div>
-          <p className="mt-8 text-sm text-sawnee-100">
+          <p className="mt-6 text-sm text-sawnee-100">
             {resources.length} verified resources · {events.length} upcoming
             community events
           </p>
@@ -133,27 +158,6 @@ export default function Home() {
             </li>
           ))}
         </ul>
-      </section>
-
-      <section
-        aria-labelledby="featured-heading"
-        className="overflow-hidden border-y border-earth-border bg-sawnee-900 py-14"
-      >
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <h2
-            id="featured-heading"
-            className="text-2xl font-semibold text-white sm:text-3xl"
-          >
-            Get involved this month
-          </h2>
-          <p className="mt-2 max-w-2xl text-sawnee-100">
-            Volunteer shifts, classes, and places that need a hand. Drag, swipe,
-            or use the arrow keys.
-          </p>
-        </div>
-        <div className="mt-4">
-          <FeaturedCarousel />
-        </div>
       </section>
 
       <section

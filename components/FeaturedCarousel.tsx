@@ -61,6 +61,7 @@ export default function FeaturedCarousel() {
   return (
     <CoverflowCarousel
       slides={slides}
+      onDark
       label="Featured events and volunteer opportunities"
     />
   );

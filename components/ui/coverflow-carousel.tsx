@@ -35,6 +35,8 @@ export interface CoverflowCarouselProps {
   showPagination?: boolean;
   showNavigation?: boolean;
   label?: string;
+  /** Set on a dark background so the pagination dots stay visible. */
+  onDark?: boolean;
   className?: string;
   cardClassName?: string;
 }
@@ -53,6 +55,7 @@ export function CoverflowCarousel({
   showPagination = true,
   showNavigation = true,
   label = "Featured opportunities",
+  onDark = false,
   className,
   cardClassName,
 }: CoverflowCarouselProps) {
@@ -365,8 +368,17 @@ export function CoverflowCarousel({
         Slide {selected + 1} of {count}: {slides[selected]?.title}
       </p>
 
+      <p
+        className={cn(
+          "mt-1 text-center text-xs",
+          onDark ? "text-sawnee-100" : "text-earth-muted",
+        )}
+      >
+        Drag, swipe, or use the arrow keys to browse
+      </p>
+
       {showPagination && (
-        <div className="mt-6 flex items-center justify-center gap-2">
+        <div className="mt-4 flex items-center justify-center gap-2">
           {slides.map((slide, index) => (
             <button
               key={slide.id}
@@ -376,9 +388,10 @@ export function CoverflowCarousel({
               onClick={() => goTo(index)}
               className={cn(
                 "h-2.5 w-2.5 rounded-full transition-opacity",
+                onDark ? "bg-gold-400" : "bg-sawnee-700",
                 index === selected
-                  ? "bg-sawnee-700 opacity-100"
-                  : "bg-earth-muted opacity-30 hover:opacity-60",
+                  ? "opacity-100"
+                  : "opacity-30 hover:opacity-60",
               )}
             />
           ))}

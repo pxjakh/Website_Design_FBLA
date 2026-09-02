@@ -1,0 +1,107 @@
+import type { CommunityEvent } from "@/lib/types";
+
+export const events: CommunityEvent[] = [
+  {
+    id: "teen-volunteer-orientation",
+    title: "Teen Volunteer Orientation",
+    venue: "Sharon Forks Library",
+    address: "2820 Old Atlanta Rd, Cumming, GA 30022",
+    startDateTime: "2026-09-12T16:00:00",
+    endDateTime: "2026-09-12T17:30:00",
+    audience: ["students", "volunteers"],
+    registrationLink: "https://forsythpl.org/events",
+    tag: "Volunteer",
+    description:
+      "Required orientation for high school students joining the fall library volunteer program. Covers shift sign-ups, service-hour logging, and what counts toward graduation requirements.",
+  },
+  {
+    id: "sawnee-guided-hike",
+    title: "Guided Fall Foliage Hike",
+    venue: "Sawnee Mountain Preserve",
+    address: "4075 Spot Rd, Cumming, GA 30028",
+    startDateTime: "2026-09-19T09:00:00",
+    endDateTime: "2026-09-19T11:00:00",
+    audience: ["families", "seniors", "students"],
+    registrationLink: "https://www.forsythco.com/sawneemountain",
+    tag: "Outdoors",
+    description:
+      "A naturalist-led hike up the Indian Seats trail, with stops to identify native hardwoods and talk about the mountain's history. Moderate difficulty, about 2 miles round trip.",
+  },
+  {
+    id: "senior-wellness-wednesday",
+    title: "Wellness Wednesday: Balance & Fall Prevention",
+    venue: "Forsyth Seniors Life Center",
+    address: "595 Dahlonega St, Cumming, GA 30040",
+    startDateTime: "2026-09-16T10:00:00",
+    endDateTime: "2026-09-16T11:00:00",
+    audience: ["seniors"],
+    registrationLink: "https://www.forsythco.com/departments-offices/senior-services",
+    tag: "Health & Wellness",
+    description:
+      "A free class led by a physical therapist covering balance exercises, home safety checks, and simple strength work adults 55+ can do seated or standing.",
+  },
+  {
+    id: "youth-soccer-registration",
+    title: "Fall Youth Soccer Registration Day",
+    venue: "Fowler Park",
+    address: "3775 Sharon Rd, Cumming, GA 30041",
+    startDateTime: "2026-09-13T10:00:00",
+    endDateTime: "2026-09-13T14:00:00",
+    audience: ["families"],
+    registrationLink: "https://www.forsythco.com/departments-offices/parks-recreation",
+    tag: "Youth Sports",
+    description:
+      "In-person registration for the fall recreational soccer season, ages 4–14. Bring proof of residency and a birth certificate. Coaches and team volunteers also needed.",
+  },
+  {
+    id: "food-pantry-packing",
+    title: "Community Food Pantry Packing Night",
+    venue: "Place of Hope",
+    address: "1595 Buford Hwy, Cumming, GA 30041",
+    startDateTime: "2026-09-24T18:00:00",
+    endDateTime: "2026-09-24T20:00:00",
+    audience: ["volunteers", "students", "families"],
+    registrationLink: "https://placeofhopega.org",
+    tag: "Volunteer",
+    description:
+      "Sort and pack food boxes for Forsyth County families. Open to volunteers 13 and up (under 16 with an adult). Service hours documented on request.",
+  },
+  {
+    id: "fbla-pitch-night",
+    title: "FBLA & DECA Student Pitch Night",
+    venue: "Greater Forsyth County Chamber of Commerce",
+    address: "607 Tribble Gap Rd, Cumming, GA 30040",
+    startDateTime: "2026-10-02T18:30:00",
+    endDateTime: "2026-10-02T20:30:00",
+    audience: ["students", "entrepreneurs"],
+    registrationLink: "https://forsythchamber.org",
+    tag: "Business",
+    description:
+      "Forsyth County high school FBLA and DECA members pitch business concepts to a panel of local owners and Chamber members, with feedback and mentorship matching afterward.",
+  },
+  {
+    id: "small-business-financing-workshop",
+    title: "Workshop: Financing Your First Small Business",
+    venue: "Cumming Small Business Incubator",
+    address: "301 Veterans Memorial Blvd, Cumming, GA 30040",
+    startDateTime: "2026-09-30T12:00:00",
+    endDateTime: "2026-09-30T13:30:00",
+    audience: ["entrepreneurs"],
+    registrationLink: "https://forsythchamber.org",
+    tag: "Business",
+    description:
+      "A free lunch-and-learn covering SBA loan basics, local lender options, and what a lender actually looks for in a first-time applicant's business plan.",
+  },
+  {
+    id: "family-movie-greenway",
+    title: "Family Movie Night on the Greenway",
+    venue: "Big Creek Greenway Trailhead",
+    address: "5450 Union Hill Rd, Cumming, GA 30028",
+    startDateTime: "2026-09-26T19:30:00",
+    endDateTime: "2026-09-26T21:30:00",
+    audience: ["families", "students"],
+    tag: "Community",
+    description:
+      "Free outdoor movie screening at the trailhead lawn. Bring blankets and chairs. Food trucks on site from 6:30 PM. No registration required.",
+  },
+];

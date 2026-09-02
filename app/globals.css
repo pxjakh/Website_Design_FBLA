@@ -1,26 +1,109 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Sawnee Pine Green — primary, 60% */
+  --color-sawnee-50: #e4efe9;
+  --color-sawnee-100: #c3ddd0;
+  --color-sawnee-300: #6fa78b;
+  --color-sawnee-500: #3e7a5f;
+  --color-sawnee-700: #1f4e3d;
+  --color-sawnee-900: #12332a;
+
+  /* Lake Lanier Blue — secondary, 30% */
+  --color-lanier-50: #e3eef6;
+  --color-lanier-100: #c1dbec;
+  --color-lanier-300: #3e85b8;
+  --color-lanier-500: #1d5c8c;
+  --color-lanier-700: #123f61;
+
+  /* Earth Neutral — base */
+  --color-earth-bg: #f7f5f1;
+  --color-earth-surface: #ffffff;
+  --color-earth-border: #e4e0d8;
+  --color-earth-text: #3a362f;
+  --color-earth-muted: #6b6558;
+
+  /* Vivid Gold Accent — 10%, use on dark surfaces or large text only */
+  --color-gold-400: #dbb24f;
+  --color-gold-500: #c99a2e;
+  --color-gold-700: #8a6816;
+
+  /* Status */
+  --color-success-600: #2e7d4f;
+  --color-success-50: #e7f4ec;
+  --color-warning-600: #b5750e;
+  --color-warning-50: #fbf1e1;
+  --color-error-600: #b3261e;
+  --color-error-50: #fbe9e8;
+
+  --background: var(--color-earth-bg);
+  --foreground: var(--color-earth-text);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-sawnee-50: var(--color-sawnee-50);
+  --color-sawnee-100: var(--color-sawnee-100);
+  --color-sawnee-300: var(--color-sawnee-300);
+  --color-sawnee-500: var(--color-sawnee-500);
+  --color-sawnee-700: var(--color-sawnee-700);
+  --color-sawnee-900: var(--color-sawnee-900);
+
+  --color-lanier-50: var(--color-lanier-50);
+  --color-lanier-100: var(--color-lanier-100);
+  --color-lanier-300: var(--color-lanier-300);
+  --color-lanier-500: var(--color-lanier-500);
+  --color-lanier-700: var(--color-lanier-700);
+
+  --color-earth-bg: var(--color-earth-bg);
+  --color-earth-surface: var(--color-earth-surface);
+  --color-earth-border: var(--color-earth-border);
+  --color-earth-text: var(--color-earth-text);
+  --color-earth-muted: var(--color-earth-muted);
+
+  --color-gold-400: var(--color-gold-400);
+  --color-gold-500: var(--color-gold-500);
+  --color-gold-700: var(--color-gold-700);
+
+  --color-success-600: var(--color-success-600);
+  --color-success-50: var(--color-success-50);
+  --color-warning-600: var(--color-warning-600);
+  --color-warning-50: var(--color-warning-50);
+  --color-error-600: var(--color-error-600);
+  --color-error-50: var(--color-error-50);
+
+  --font-display: var(--font-fraunces);
+  --font-sans: var(--font-inter);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display), Georgia, serif;
+}
+
+/* Visible only when focused, for the skip-to-content link */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -3rem;
+  z-index: 100;
+  transition: top 0.15s ease-in-out;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* Consistent, always-visible keyboard focus ring across the app */
+:focus-visible {
+  outline: 2px solid var(--color-lanier-500);
+  outline-offset: 2px;
+  border-radius: 4px;
 }

@@ -73,7 +73,7 @@ export default function Header() {
           aria-expanded={menuOpen}
           aria-controls="mobile-nav"
           aria-label={menuOpen ? "Close menu" : "Open menu"}
-          className="rounded-md p-2 text-sawnee-700 hover:bg-earth-bg md:hidden"
+          className="rounded-md p-2.5 text-sawnee-700 hover:bg-earth-bg md:hidden"
         >
           {menuOpen ? (
             <X className="h-6 w-6" aria-hidden="true" />

@@ -82,7 +82,7 @@ export default function RsvpModal({
             type="button"
             onClick={onClose}
             aria-label="Close event details"
-            className="rounded-md p-1.5 text-earth-muted hover:bg-earth-bg"
+            className="shrink-0 rounded-md p-3 text-earth-muted transition-colors hover:bg-earth-bg"
           >
             <X className="h-5 w-5" aria-hidden="true" />
           </button>

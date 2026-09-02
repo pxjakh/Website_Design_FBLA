@@ -29,7 +29,9 @@
   --color-gold-700: #8a6816;
 
   /* Status */
-  --color-success-600: #2e7d4f;
+  /* Darkened from #2e7d4f, which measured 4.46:1 on --color-success-50 and
+     missed WCAG AA for the "Open now" badge. Now 5.68:1. */
+  --color-success-600: #276b40;
   --color-success-50: #e7f4ec;
   --color-warning-600: #b5750e;
   --color-warning-50: #fbf1e1;
@@ -106,4 +108,42 @@ h1, h2, h3, h4 {
   outline: 2px solid var(--color-lanier-500);
   outline-offset: 2px;
   border-radius: 4px;
+}
+
+/* Tailwind v4's preflight sets buttons to cursor: default, which reads as
+   non-interactive. Restore the pointer on everything actually clickable. */
+button:not(:disabled),
+[role="button"]:not(:disabled),
+a[href],
+label,
+summary,
+select {
+  cursor: pointer;
+}
+
+/* Removes the ~300ms mobile tap delay without disabling pinch-zoom */
+button,
+a,
+input,
+select,
+textarea,
+label {
+  touch-action: manipulation;
+}
+
+/* Honour the OS "reduce motion" setting — vestibular disorders and motion
+   sensitivity make the hover/skeleton transitions actively harmful. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .skip-link {
+    transition: none;
+  }
 }

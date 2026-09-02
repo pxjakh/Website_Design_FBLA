@@ -7,6 +7,7 @@ import {
   ArrowRight,
   CalendarDays,
 } from "lucide-react";
+import DotBorderCard from "@/components/ui/DotBorderCard";
 import { events } from "@/data/events";
 import { resources } from "@/data/resources";
 import { formatEventDateTime } from "@/lib/utils";
@@ -99,13 +100,10 @@ export default function Home() {
           Four pillars cover the services Forsyth County residents look for most.
         </p>
 
-        <ul className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="mt-8 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
           {PILLARS.map(({ slug, label, description, Icon }) => (
             <li key={slug}>
-              <Link
-                href={`/resources?category=${slug}`}
-                className="group flex h-full flex-col rounded-xl border border-earth-border bg-earth-surface p-6 transition-shadow hover:shadow-md"
-              >
+              <DotBorderCard href={`/resources?category=${slug}`}>
                 <Icon
                   className="h-8 w-8 text-sawnee-500 transition-colors group-hover:text-sawnee-700"
                   aria-hidden="true"
@@ -123,7 +121,7 @@ export default function Home() {
                     aria-hidden="true"
                   />
                 </span>
-              </Link>
+              </DotBorderCard>
             </li>
           ))}
         </ul>
